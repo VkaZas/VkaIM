@@ -20,3 +20,7 @@ def ws_connect(message):
 
 def ws_disconnect(message):
     print(message)
+
+
+def http_consumer(message):
+    print(message)

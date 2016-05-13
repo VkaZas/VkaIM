@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-from django.conf.global_settings import STATIC_ROOT, STATICFILES_DIRS, STATICFILES_FINDERS
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -133,9 +132,8 @@ STATIC_URL = '/common_static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'common_static'),
-)
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'common_static')
+
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -151,7 +149,7 @@ CHANNEL_LAYERS = {
             "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')]
             #"hosts": [("localhost", 6379)]
         },
-        "ROUTING": "VkaIM.routing.channel_routing",
+        "ROUTING": "VkaIM.routing.routing",
 
     }
 }
