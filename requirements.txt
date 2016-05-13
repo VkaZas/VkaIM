@@ -4,7 +4,6 @@ autobahn==0.14.0
 channels==0.13.0
 daphne==0.12.0
 Django==1.9.3
-dwebsocket==0.4.3
 haikunator==1.0.1
 msgpack-python==0.4.7
 psycopg2==2.6.1
