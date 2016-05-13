@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../common_static/js/jquery-1.12.3.min.js"></script>
+</head>
+<body>
+    <label for="input-msg">输入信息</label>
+    <button id="btn-send">发送</button>
+    <input type="text" id="input-msg">
+    <h1 id="state"></h1>
+    <h1 id="receive-msg" style="color: red"></h1>
+
+<script>
+    var msg = $("#input-msg").val();
+    var wsUri = 'ws://10.111.7.254:712/vkazas/';
+    var websocket = new WebSocket(wsUri);
+
+    websocket.onopen = function(e) {
+        $("#state").html("connected");
+    };
+
+    websocket.onclose = function(e) {
+        $("#state").html("closed");
+    };
+    websocket.onmessage = function(e) {
+        $("#receive-msg").html(e.data);
+    };
+    websocket.onerror = function(e) {
+        $("#state").html(e.data)
+    };
+    $("#btn-send").click(function(){
+        websocket.send($("#input-msg").val());
+    });
+</script>
+</body>
+</html>

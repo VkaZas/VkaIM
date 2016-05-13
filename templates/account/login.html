@@ -1,0 +1,48 @@
+{% extends 'account/account_base.html' %}
+
+{% block title-txt %}
+    login
+{% endblock %}
+
+{% block header-txt %}
+    注册页面
+{% endblock %}
+
+{% block content-blk %}
+    <div class="login-blk">
+        <div class="form-group">
+            <label for="login-uname">用户名</label>
+            <input id="login-uname" type="text">
+        </div>
+        <div class="form-group">
+            <label for="login-pw">密码</label>
+            <input id="login-pw" type="password">
+        </div>
+        <button class="btn" id="login-btn" onclick="login()">注册</button>
+    </div>
+{% endblock %}
+
+{% block script-blk %}
+    <script>
+
+    function login() {
+        $.ajax({
+            url : _host_address + '{% url "do_login" %}',
+            data : {
+                username : $("#login-uname").val(),
+                password : $.md5($("#login-pw").val())
+            },
+            success : function(ret) {
+                console.log(ret);
+            },
+            dataType : 'json',
+            type : 'POST'
+        })
+    }
+
+    $(function(){
+
+    });
+
+</script>
+{% endblock %}

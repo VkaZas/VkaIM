@@ -1,0 +1,53 @@
+{% extends 'account/account_base.html' %}
+
+{% block title-txt %}
+    Register
+{% endblock %}
+
+{% block header-txt %}
+    注册页面
+{% endblock %}
+
+{% block content-blk %}
+    <div class="reg-blk">
+        <div class="form-group">
+            <label for="reg-uname">用户名</label>
+            <input id="reg-uname" type="text">
+        </div>
+        <div class="form-group">
+            <label for="reg-pw">密码</label>
+            <input id="reg-pw" type="password">
+        </div>
+        <div class="form-group">
+            <label for="reg-email">邮箱</label>
+            <input id="reg-email" type="email">
+        </div>
+        <button class="btn" id="reg-btn" onclick="register()">注册</button>
+    </div>
+{% endblock %}
+
+{% block script-blk %}
+    <script>
+
+    function register() {
+        $.ajax({
+            url : _host_address + "{% url 'do_register' %}",
+            data : {
+                username : $("#reg-uname").val(),
+                password : $.md5($("#reg-pw").val()),
+                email : $("#reg-email").val()
+            },
+            success : function(ret) {
+                console.log(ret);
+            },
+            dataType : 'json',
+            type : 'POST'
+        })
+    }
+
+    $(function(){
+
+    });
+
+</script>
+{% endblock %}
