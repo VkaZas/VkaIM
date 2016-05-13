@@ -27,7 +27,7 @@ SECRET_KEY = '_4dq2@qy9pblk-r_ny0)d)f4)t8e*_c(c9@i24wou=yj^l=og8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -76,7 +76,6 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'VkaIM.wsgi.application'
 
 
 # Database
@@ -146,7 +145,12 @@ STATICFILES_FINDERS = (
 # Channel Settings
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "asgiref.inmemory.ChannelLayer",
+        "BACKEND": "asgi_redis.RedisChannelLayer",
+        #"BACKEND": "asgiref.inmemory.ChannelLayer",
+        "CONFIG": {
+            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')]
+            #"hosts": [("localhost", 6379)]
+        },
         "ROUTING": "VkaIM.routing.channel_routing",
 
     }

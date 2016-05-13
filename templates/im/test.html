@@ -14,7 +14,7 @@
 
 <script>
     var msg = $("#input-msg").val();
-    var wsUri = 'ws://10.111.7.254:712/vkazas/';
+    var wsUri = 'ws://localhost:8000/vkazas/';
     var websocket = new WebSocket(wsUri);
 
     websocket.onopen = function(e) {
