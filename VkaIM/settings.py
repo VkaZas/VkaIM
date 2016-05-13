@@ -132,7 +132,9 @@ STATIC_URL = '/common_static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'common_static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'common_static'),
+)
 
 
 STATICFILES_FINDERS = (

@@ -28,5 +28,5 @@ urlpatterns = [
     url(r'^register/register.do', views.do_register, name='do_register'),
     url(r'^login/login.do', views.do_login, name='do_login'),
     # url(r'^vkazas/$', views.echo_once)
-    url(r'^common_static/(?P<path>.*)$', serve, {'document_root': settings.STATICFILES_DIRS}),
+    url(r'^common_static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 ]
