@@ -80,13 +80,24 @@ TEMPLATES = [
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'vka_im',
+#         'HOST': '',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'PORT': '3306'
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'vka_im',
-        'HOST': '',
-        'USER': 'root',
-        'PASSWORD': '',
+        'NAME': 'l4KVeLQ7O6Td8bIv',
+        'HOST': '10.10.26.58',
+        'USER': 'uBv5UOyktIcNP9Ch',
+        'PASSWORD': 'pUkLcSq3yMpZjmOe9',
         'PORT': '3306'
     }
 }
@@ -148,8 +159,8 @@ CHANNEL_LAYERS = {
         "BACKEND": "asgi_redis.RedisChannelLayer",
         #"BACKEND": "asgiref.inmemory.ChannelLayer",
         "CONFIG": {
-             "hosts": [os.environ.get('REDIS_URL', 'redis://vkazas-redis:iamlegend@pub-redis-12355.us-east-1-3.4.ec2.garantiadata.com:12355/')]
-            # "hosts": [("pub-redis-12355.us-east-1-3.4.ec2.garantiadata.com", 12355)]
+             #"hosts": [os.environ.get('REDIS_URL', 'redis://vkazas-redis:iamlegend@pub-redis-12355.us-east-1-3.4.ec2.garantiadata.com:12355/')]
+             "hosts": [('10.10.189.180', 12355, "ile8puOCn6ijC")]
         },
         "ROUTING": "VkaIM.routing.routing",
 
