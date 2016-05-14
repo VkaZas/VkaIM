@@ -80,27 +80,27 @@ TEMPLATES = [
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'vka_im',
-        'HOST': '',
-        'USER': 'root',
-        'PASSWORD': '',
-        'PORT': '3306'
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'l4KVeLQ7O6Td8bIv',
-#         'HOST': '10.10.26.58',
-#         'USER': 'uBv5UOyktIcNP9Ch',
-#         'PASSWORD': 'pUkLcSq3yMpZjmOe9',
+#         'NAME': 'vka_im',
+#         'HOST': '',
+#         'USER': 'root',
+#         'PASSWORD': '',
 #         'PORT': '3306'
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'l4KVeLQ7O6Td8bIv',
+        'HOST': '10.10.26.58',
+        'USER': 'uBv5UOyktIcNP9Ch',
+        'PASSWORD': 'pUkLcSq3yMpZjmOe9',
+        'PORT': '3306'
+    }
+}
 
 
 # Password validation
