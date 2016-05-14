@@ -148,8 +148,8 @@ CHANNEL_LAYERS = {
         "BACKEND": "asgi_redis.RedisChannelLayer",
         #"BACKEND": "asgiref.inmemory.ChannelLayer",
         "CONFIG": {
-            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')]
-            #"hosts": [("localhost", 6379)]
+             "hosts": [os.environ.get('REDIS_URL', 'redis://vkazas-redis:iamlegend@pub-redis-12355.us-east-1-3.4.ec2.garantiadata.com:12355/')]
+            # "hosts": [("pub-redis-12355.us-east-1-3.4.ec2.garantiadata.com", 12355)]
         },
         "ROUTING": "VkaIM.routing.routing",
 
