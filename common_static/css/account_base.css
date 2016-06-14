@@ -1,0 +1,32 @@
+body {
+    background-color: black;
+}
+
+.content-blk {
+    height: 500px;
+    width: 400px;
+    margin: auto;
+    opacity: 20;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+.content-blk-bg {
+    margin: auto;
+    height: 500px;
+    width: 400px;
+    background-color: silver;
+    position: absolute;
+    z-index: -1;
+    border-radius: 10px;
+}
+.content-blk > .form-group {
+    flex: auto;
+    flex-grow: 0;
+    text-align: center;
+    margin: 15px auto;
+}
+
+

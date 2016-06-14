@@ -1,0 +1,76 @@
+<div class="im-content-blk">
+    <div class="contact-container">
+        <ul class="contact-list">
+            {% for contact in contact_list %}
+                <li class="contact-item"  data-uid="{{ contact.id }}">{{ contact.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="message-container">
+        <h1 id="message"></h1>
+        <input id="message-input" placeholder="...">
+        <button class="btn" id="message-send" onclick="sendMessage()">send</button>
+    </div>
+</div>
+
+<script>
+    var targetId = "";
+    _uid = getQueryString('uid');
+    var ws = new WebSocket(_ws_address + "?uid=" + _uid);
+
+    function activateContact(uid) {
+        targetId = uid;
+    }
+
+    function initWebsocket() {
+        ws.onmessage = function(e) {  // store messages in buffer
+            var msg = $.parseJSON(e.data);
+            if (msg['buffer'] == '1') {
+                var bf_uid = msg['bf_uid'];
+                if (!_msgBuffer[bf_uid]) _msgBuffer[bf_uid] = msg['data'];
+                else _msgBuffer[bf_uid] = _msgBuffer[bf_uid].concat(msg['data']);
+                console.log(msg);
+            }
+        };
+        ws.onopen = fetchAllMsg;
+    }
+
+    function sendMessage() {
+        var msgObj = {
+            message: $("#message-input").val(),
+            target: targetId,
+            uid : _uid
+        };
+        ws.send(JSON.stringify(msgObj))
+    }
+
+    function initContactList() {
+        var $contactList = $(".contact-list");
+        $contactList.vscrolllist(function() {
+            var $curItem = $(".active");
+            activateContact($curItem.attr("data-uid"));
+        });
+    }
+
+    function fetchUserMsg(targetId) {
+        var msgObj = {
+            query : "1",
+            target: targetId,
+            uid : _uid
+        };
+        ws.send(JSON.stringify(msgObj))
+    }
+
+    function fetchAllMsg() {
+        var $list = $(".contact-list");
+        $list.children("li").each(function(){
+            fetchUserMsg($(this).attr("data-uid"));
+        })
+    }
+
+    $(function(){
+        initWebsocket();
+        initContactList();
+    })
+</script>

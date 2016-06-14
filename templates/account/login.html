@@ -5,38 +5,45 @@
 {% endblock %}
 
 {% block header-txt %}
-    注册页面
+    登录页面
 {% endblock %}
 
 {% block content-blk %}
-    <div class="login-blk">
+    <div class="content-blk-bg"></div>
+    <div class="content-blk">
         <div class="form-group">
             <label for="login-uname">用户名</label>
             <input id="login-uname" type="text">
         </div>
         <div class="form-group">
-            <label for="login-pw">密码</label>
+            <label for="login-pw">密&nbsp;&nbsp;码</label>
             <input id="login-pw" type="password">
         </div>
-        <button class="btn" id="login-btn" onclick="login()">注册</button>
-    </div>
+        <div class="form-group">
+            <button class="btn" id="login-btn" onclick="login()">登录</button>
+        </div>
+        </div>
 {% endblock %}
 
 {% block script-blk %}
     <script>
 
     function login() {
-        $.ajax({
+        request({
             url : _host_address + '{% url "do_login" %}',
-            data : {
+            params : {
                 username : $("#login-uname").val(),
                 password : $.md5($("#login-pw").val())
             },
-            success : function(ret) {
-                console.log(ret);
+            success : function(data) {
+                setToken(data["token"]);
+                setUid(data["uid"]);
+                var url = addQueryParams("/im", {token: getToken(), uid: getUid()});
+                window.location.href = url;
             },
-            dataType : 'json',
-            type : 'POST'
+            error : function(message) {
+                console.log(message);
+            }
         })
     }
 

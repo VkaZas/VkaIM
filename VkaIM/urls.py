@@ -19,14 +19,21 @@ from django.contrib import admin
 from django.views.static import serve
 
 from VkaIM import settings
-from account import views
+
+from account import views as acc_views
+from im import views as im_views
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^register/$', views.visit_register, name='vis_register'),
-    url(r'^login/$', views.visit_login, name='vis_login'),
-    url(r'^register/register.do', views.do_register, name='do_register'),
-    url(r'^login/login.do', views.do_login, name='do_login'),
-    # url(r'^vkazas/$', views.echo_once)
+    url(r'^register/$', acc_views.visit_register, name='vis_register'),
+    url(r'^register/register.do', acc_views.do_register, name='do_register'),
+
+    url(r'^login/$', acc_views.visit_login, name='vis_login'),
+    url(r'^login/login.do', acc_views.do_login, name='do_login'),
+
+    url(r'^im/', im_views.visit_im, name='vis_im'),
+
+
     url(r'^common_static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 ]
